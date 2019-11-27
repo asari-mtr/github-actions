@@ -6,7 +6,7 @@ Test github actions?
 
 ~Why does not Github Actions work on pr event?~
 
-Work!
+I can do it!
 
 Type miss..
 
