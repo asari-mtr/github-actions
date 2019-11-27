@@ -1,10 +1,6 @@
 name: echo on pull request opend
 
-on:
-  pull_request:
-    branches: master
-    types: [opend]
-    
+on: pull_request
 jobs:
   build:
 
