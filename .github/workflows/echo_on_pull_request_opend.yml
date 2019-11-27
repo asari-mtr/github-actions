@@ -5,20 +5,15 @@ on:
     types: opened
 
 jobs:
-  build:
+  comment:
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Run a one-line script
-      run: echo Hello, world!
     - name: cat
       run: |
-        if [ `cat $GITHUB_EVENT_PATH | jq ".pull_request.labels[]" -r | wc -l` -gt 0 ]; then
+        if [ `cat $GITHUB_EVENT_PATH | jq ".pull_request.labels[]" -r | wc -l` -eq 0 ]; then
           COMMENT_URL=`cat $GITHUB_EVENT_PATH | jq ".pull_request.comments_url" -r`
+          echo $COMMENT_URL
           curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d "{\"body\": \"No label\"}" $COMMENT_URL
         fi
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
