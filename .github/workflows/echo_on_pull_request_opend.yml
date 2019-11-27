@@ -12,7 +12,9 @@ jobs:
     steps:
     - name: cat
       run: |
-        if [ `cat $GITHUB_EVENT_PATH | jq ".pull_request.labels[]" -r | wc -l` -eq 0 ]; then
+        LABELS=`cat $GITHUB_EVENT_PATH | jq ".pull_request.labels[]" -r`
+        echo $LABELS
+        if [ `echo $LABELS | wc -l` -eq 0 ]; then
           COMMENT_URL=`cat $GITHUB_EVENT_PATH | jq ".pull_request.comments_url" -r`
           echo $COMMENT_URL
           curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d "{\"body\": \"No label\"}" $COMMENT_URL
