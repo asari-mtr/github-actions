@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: cat
+    - name: check label
       run: |
         LABELS=`cat $GITHUB_EVENT_PATH | jq ".pull_request.labels[]" -r`
         echo $LABELS
