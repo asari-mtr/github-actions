@@ -1,19 +1,19 @@
 name: echo on pull request opend
 
-on: 
+on:
   pull_request:
-    types: 
-      - opened
+    types: opened
 
 jobs:
-  build:
+  comment:
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: cat
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        if [ `cat $GITHUB_EVENT_PATH | jq ".pull_request.labels[]" -r | wc -l` -eq 0 ]; then
+          COMMENT_URL=`cat $GITHUB_EVENT_PATH | jq ".pull_request.comments_url" -r`
+          echo $COMMENT_URL
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d "{\"body\": \"No label\"}" $COMMENT_URL
+        fi
