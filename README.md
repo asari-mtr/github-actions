@@ -2,7 +2,7 @@
 
 Hello
 
-test github actions?
+Test github actions?
 
 ~Why does not Github Actions work on pr event?~
 
