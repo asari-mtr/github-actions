@@ -1,6 +1,8 @@
 name: echo on pull request opend
 
-on: pull_request
+on: 
+  pull_request:
+    types: opend
 
 jobs:
   build:
