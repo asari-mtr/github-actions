@@ -8,7 +8,7 @@ Test github actions?
 
 I can do it!
 
-Type miss..
+Type miss...
 
 Can work?
 
